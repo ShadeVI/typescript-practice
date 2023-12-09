@@ -1,21 +1,19 @@
+import { Link } from 'react-router-dom'
 import { useUserContext } from '../UserContext'
+import { RUTAS } from '../constants/enums'
 
 const Navbar = () => {
-  const { user, login, logout } = useUserContext()
-  console.log(user)
+  const { user, login, logout, isLoading } = useUserContext()
 
   const handleLogin = () => {
-    login({
-      userID: '164ae9f2-9798-4dbc-b555-dd25e118b2ca',
-      username: 'Pepino123',
-      name: 'Pepe'
-    })
+    void login()
   }
   return (
-    <nav>
+    <nav className="flex justify-between items-center">
+      <div>
       {user === undefined
         ? (
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={() => { handleLogin() }} disabled={isLoading}>Login</button>
           )
         : (
         <button
@@ -24,7 +22,13 @@ const Navbar = () => {
           Logout
         </button>
           )}
-      <p>{user !== undefined && `Bienvenido, ${user.username}`}</p>
+      </div>
+      <div>
+        <p>{user !== undefined && `Bienvenido, ${user.username}`}</p>
+      </div>
+      <div>
+        <Link to={RUTAS.Profile}>Profile</Link>
+      </div>
     </nav>
   )
 }
