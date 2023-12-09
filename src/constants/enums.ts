@@ -1,9 +1,9 @@
 export enum RUTAS {
   Home = '/',
   Usuarios = '/usuarios',
+  Details = ':id',
   About = '/about',
-  Profile = '/profile',
-  Details = '/usuarios/:id'
+  Profile = '/profile'
 }
 
 export enum URLS {

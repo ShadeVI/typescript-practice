@@ -1,21 +1,24 @@
-import useFetch from '../hooks/useFetch'
+import { type Usuario } from '../../types'
 import Loading from './Loading'
 import { Link } from 'react-router-dom'
 
-const ListaUsuarios = () => {
-  const { usuarios, isLoading } = useFetch()
+interface Props {
+  usuarios: Usuario[]
+  isLoading: boolean
+}
 
+const ListaUsuarios = ({ usuarios, isLoading }: Props) => {
   if (isLoading) return <Loading />
 
   return (
     <div>
-      <h2>Componente Usuarios</h2>
+      <h2 className="text-2xl mb-4 underline">Users</h2>
       <ul>
         {
           usuarios.map((usuario) => {
             const { login: { uuid }, name: { first: firstName } } = usuario
             return (
-              <li key={uuid}>{firstName} -- <Link to={`${uuid}`}>Visit Profile</Link></li>
+              <li key={uuid}>{firstName} -- <Link to={`${uuid}`}>Show Details</Link></li>
             )
           })
         }

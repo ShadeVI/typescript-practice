@@ -18,16 +18,17 @@ const Routes = () => {
           <Profile />
         </ProtectedRoute>
       } />
-      <Route path={RUTAS.Usuarios} element={
-        <ProtectedRoute>
-          <Usuarios />
-        </ProtectedRoute>
-      } />
-      <Route path={RUTAS.Details} element={
-        <ProtectedRoute>
-          <Details />
-        </ProtectedRoute>
-      } />
+      <Route path={RUTAS.Usuarios} element={(
+            <ProtectedRoute>
+              <Usuarios />
+            </ProtectedRoute>
+          )}>
+            <Route path={RUTAS.Details} element={
+              <ProtectedRoute>
+                <Details />
+              </ProtectedRoute>
+            } />
+      </Route>
       <Route path="*" element={<ErrorPage />} />
     </RRoutes>
   )

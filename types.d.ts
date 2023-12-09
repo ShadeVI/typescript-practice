@@ -54,3 +54,7 @@ export interface Usuario {
   }
   nat: string
 }
+
+export interface UsuariosOutletContextType {
+  usuarios: Usuario[]
+}
