@@ -4,7 +4,7 @@ const Profile = () => {
   const { user } = useUserContext()
 
   if (!user) {
-    return <div className='h-scree flex justify-center items-center'>
+    return <div className='h-screen flex justify-center items-center'>
       LOADING...
     </div>
   }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { type Usuario } from '../../types'
 import Loading from './Loading'
+import { Link } from 'react-router-dom'
 
 const ListaUsuarios = () => {
   const [usuarios, setUsuarios] = useState<Usuario[]>([])
@@ -27,7 +28,7 @@ const ListaUsuarios = () => {
           usuarios.map((usuario) => {
             const { login: { uuid }, name: { first: firstName } } = usuario
             return (
-              <li key={uuid}>{firstName}</li>
+              <li key={uuid}>{firstName} -- <Link to={`${uuid}`}>Visit Profile</Link></li>
             )
           })
         }
