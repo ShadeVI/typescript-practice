@@ -8,7 +8,7 @@ interface IUser {
 
 interface IUserCont {
   user: IUser | undefined
-  login: () => Promise<void>
+  login: (username: string) => Promise<void>
   logout: () => void
   isLoading: boolean
 }
@@ -19,28 +19,28 @@ export const UserContextProviver = ({ children }: { children: React.ReactNode })
   const [user, setUser] = useState<IUser | undefined>(undefined)
   const [isLoading, setIsLoading] = useState(false)
 
-  const login = async () => {
+  const login = async (username: string) => {
     // Simulate login
-    setIsLoading(true)
-    const promise = new Promise<IUser>((resolve) => {
-      setTimeout(() => {
-        const user = {
-          userID: '164ae9f2-9798-4dbc-b555-dd25e118b2ca',
-          username: 'Pepino123',
-          name: 'Pepe'
-        }
-        resolve(user)
-      }, 2000)
-    })
-
-    const resolved = Promise.resolve(promise)
-    const userLogged = await resolved
-    setUser(userLogged)
-    setIsLoading(false)
+    try {
+      setIsLoading(true)
+      const users: IUser[] = await getUserData()
+      const userData = users.find((user) => user.username === username)
+      setUser(userData)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const logout = () => {
     setUser(undefined)
+  }
+
+  const getUserData = async () => {
+    const response = await fetch('http://localhost:3000/users')
+    const json: IUser[] = await response.json()
+    return json
   }
 
   return <UserContext.Provider value={{ user, login, logout, isLoading }}>

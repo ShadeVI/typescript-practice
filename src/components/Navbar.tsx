@@ -6,7 +6,7 @@ const Navbar = () => {
   const { user, login, logout, isLoading } = useUserContext()
 
   const handleLogin = () => {
-    void login()
+    void login('Pepino123')
   }
   return (
     <nav className="flex justify-between items-center">
