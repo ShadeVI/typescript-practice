@@ -11,7 +11,7 @@ const ListaUsuarios = ({ usuarios, isLoading }: Props) => {
   if (isLoading) return <Loading />
 
   return (
-    <div>
+    <div className='flex-grow-[0.25] border-r-2 border-r-neutral-900'>
       <h2 className="text-2xl mb-4 underline">Users</h2>
       <ul>
         {
