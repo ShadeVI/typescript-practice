@@ -3,7 +3,7 @@ import { useUserContext } from '../UserContext'
 import { RUTAS } from '../constants/enums'
 
 const Navbar = () => {
-  const { user, login, logout, isLoading } = useUserContext()
+  const { user, login, logout, isLoading, error } = useUserContext()
 
   const handleLogin = () => {
     void login('Pepino123')
@@ -16,14 +16,11 @@ const Navbar = () => {
         <button onClick={() => { handleLogin() }} disabled={isLoading}>Login</button>
           )
         : (
-        <button
-          onClick={logout}
-        >
-          Logout
-        </button>
+        <button onClick={logout}> Logout </button>
           )}
       </div>
       <div>
+        {error.isError && <p className='text-red-600'>{error.message}</p>}
         <p>{user !== undefined && `Bienvenido, ${user.username}`}</p>
       </div>
       <div>

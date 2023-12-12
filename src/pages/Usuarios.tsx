@@ -8,7 +8,7 @@ const Usuarios = () => {
     <div>
       <h1>Pagina Usuarios</h1>
       <Link to="/">Back to Home</Link>
-      <div className="flex justify-between items-start mt-12">
+      <div className="flex justify-between items-start mt-12 relative">
         <ListaUsuarios usuarios={usuarios} isLoading={isLoading} />
         <Outlet context={{ usuarios }} />
       </div>

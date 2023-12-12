@@ -8,7 +8,7 @@ const Details = () => {
   const userDetails = context.usuarios.find(user => user.login.uuid === params.id)
 
   return (
-    <div className='flex flex-col justify-center items-center mx-auto text-center bg-neutral-900 p-16 rounded-md'>
+    <div className='flex flex-col justify-center items-center mx-auto text-center bg-neutral-900 p-16 rounded-md sticky top-2'>
       <div>
         <h1 className='text-4xl my-8'>{userDetails?.name.first}</h1>
         <h3 className='text-xl my-8'>{userDetails?.login.uuid}</h3>
